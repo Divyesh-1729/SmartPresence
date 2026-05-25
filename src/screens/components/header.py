@@ -12,3 +12,16 @@ def header_home():
         </div>
         """, unsafe_allow_html=True
     )
+
+
+def header_dashboard():
+
+    logo_url = "https://tse4.mm.bing.net/th/id/OIP.nRkNUDYhVXBKIAyf9McgEgHaHa?pid=Api&P=0&h=180"
+    st.markdown(
+        f"""
+        <div style='display: flex ; align-items: center; justify-content: center; text-align: center; gap: 10px'>
+        <img src='{logo_url}' style='width: 100px; height: 85px; border-radius: 20%; border: 2px solid #000000; margin-bottom: 20px; object-fit: cover;' />
+        <h2 style='text-align: center; color: #5865F2; margin: 0;'>SMART PRESENCE</h2>
+        </div>
+        """, unsafe_allow_html=True
+    )
