@@ -1,4 +1,5 @@
 #Utilities
+streamlit>=1.42.0
 numpy
 pandas
 #Face recognition
@@ -15,7 +16,9 @@ bcrypt
 segno
 pillow
 
-streamlit>=1.42.0
 
-librosa
-resemblyzer
+
+torch>=2.12.1
+
+librosa   #Load the audio files and 
+resemblyzer  #LOad the audio files and extract the embeddings
