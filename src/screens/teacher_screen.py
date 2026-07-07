@@ -206,8 +206,8 @@ def teacher_tab_manage_subjects():
             ]
 
         def share_btn():
-            if st.button(f"Share Code: {sub['subject_code']}",key = f"share_{sub['subject_code']}", type="secondary", use_container_width=True, on_click=lambda: st.toast(f"Share link for {sub['subject_code']} copied to clipboard!", icon="✅")):
-                share_subject_dialog(sub['name'])
+            if st.button(f"Share Code: {sub['subject_code']}", key=f"share_{sub['subject_code']}", type="secondary", use_container_width=True, on_click=lambda: st.toast(f"Share link for {sub['subject_code']} copied to clipboard!", icon="✅")):
+                share_subject_dialog(sub['name'], sub['subject_code'])
             st.space()
 
         subject_card(
