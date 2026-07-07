@@ -201,24 +201,28 @@ def teacher_tab_manage_subjects():
     if subjects:
         for sub in subjects:
             stats = [
-                ("👥","Students",sub['total_students']),
-                ("📅","Classes",sub['total_classes'])
+                ("👥", "Students", sub["total_students"]),
+                ("📅", "Classes", sub["total_classes"])
             ]
 
-        def share_btn():
-            if st.button(f"Share Code: {sub['subject_code']}", key=f"share_{sub['subject_code']}", type="secondary", use_container_width=True, on_click=lambda: st.toast(f"Share link for {sub['subject_code']} copied to clipboard!", icon="✅")):
-                share_subject_dialog(sub['name'], sub['subject_code'])
-            st.space()
+            def share_btn():
+                if st.button(
+                    f"Share Code: {sub['subject_code']}",
+                    key=f"share_{sub['subject_code']}",
+                    type="secondary",
+                    use_container_width=True,
+                ):
+                    share_subject_dialog(sub["name"], sub["subject_code"])
 
-        subject_card(
-            name=sub['name'],
-            section=sub['section'],
-            code=sub['subject_code'],
-            stats=stats,
-            footer_callback=share_btn
-        )
-    else:
-        st.info("No subjects found. Please create a new subject.", icon="⚠️")
+            subject_card(
+                name=sub["name"],
+                section=sub["section"],
+                code=sub["subject_code"],
+                stats=stats,
+                footer_callback=share_btn,
+            )
+        else:
+            st.info("No subjects found. Please create a new subject.", icon="⚠️")
 
 
 
