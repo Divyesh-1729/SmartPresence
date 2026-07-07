@@ -28,7 +28,7 @@ def add_photos_dialog():
         cam_photo = st.camera_input("Take a photo", key= 'dialog_cam')
         if cam_photo:
             st.session_state.attendance_images.append(Image.open(cam_photo))
-            st.toast("Photo added successfully!", type="success")
+            st.toast("Photo added successfully!", icon="✅")
             st.rerun()
         
 
@@ -39,7 +39,7 @@ def add_photos_dialog():
             for f in uploaded_files:
                 st.session_state.attendance_images.append(Image.open(f))
 
-                st.toast("Photo added successfully!", type="success")
+                st.toast("Photo added successfully!", icon="✅")
                 st.rerun()
 
             st.divider()
