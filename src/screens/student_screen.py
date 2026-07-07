@@ -44,26 +44,35 @@ def student_dashboard():
     stats_map={}
 
     for log in logs:
-        sid = log['subject_id']
+        sid = log.get('subject_id')
+        if sid is None:
+            # try nested subject
+            sid = log.get('subjects', {}).get('subject_id') if isinstance(log.get('subjects'), dict) else None
+
+        if sid is None:
+            continue
 
         if sid not in stats_map:
             stats_map[sid] = {
-                'total_classes': 0,
-                'attended_classes': 0
+                'total': 0,
+                'attended': 0
             }
 
-        stats_map[sid]['total_classes'] += 1
+        stats_map[sid]['total'] += 1
 
         if log.get('is_present'):
-            stats_map[sid]['attended_classes'] += 1
+            stats_map[sid]['attended'] += 1
 
     
     cols =st.columns(2)
     for i,sub_mode in enumerate(subjects):
-        sub=sub_mode['subjects']
-        sid = sub
+        sub = sub_mode.get('subjects') if isinstance(sub_mode, dict) else None
+        if not sub:
+            continue
 
-        stats= stats_map.get(sid, {"total":0, "attended":0})
+        sid = sub.get('subject_id') or sub.get('id') or sub.get('subject_code')
+
+        stats = stats_map.get(sid, {"total":0, "attended":0})
         def unenroll_button():
                 if st.button("Unenroll from this course", type='tertiary',width='stretch',icon="🗑️"):
                     unenroll_student_from_subject(student_id, sid)
@@ -75,10 +84,11 @@ def student_dashboard():
         with cols[i%2]:
             subject_card(
                 name=sub['name'],
-                code=sub['subject_code'],
-                section=sub['section'],
+                code=sub.get('subject_code', ''),
+                section=sub.get('section', ''),
                 stats=[
-                    {'🗓️','Total',stats['total']},{'✅','Attended',stats['attended']}
+                    ('🗓️','Total', stats['total']),
+                    ('✅','Attended', stats['attended'])
                 ],
                 footer_callback=unenroll_button
             )
