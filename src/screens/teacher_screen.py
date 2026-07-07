@@ -98,8 +98,8 @@ def teacher_tab_take_attendance():
     with col1:
         selected_subject_label = st.selectbox("Select Subject", options=list(subject_options.keys()))
     with col2:
-        st.button("Add photos 📸", type="primary", width="stretch")
-        add_photos_dialog()
+        if st.button("Add photos 📸", type="primary", width="stretch"):
+            add_photos_dialog()
     
     selected_subject_id = subject_options[selected_subject_label]
 
@@ -116,9 +116,9 @@ def teacher_tab_take_attendance():
     c1,c2,c3 = st.columns(3)
 
     with c1:
-        st.button('Clear Photos', type="tertiary", width="stretch", disabled=not has_photos, icon="🗑️")
-        st.session_state.attendance_images=[]
-        st.rerun()
+        if st.button('Clear Photos', type="tertiary", width="stretch", disabled=not has_photos, icon="🗑️"):
+            st.session_state.attendance_images = []
+            st.rerun()
     
     with c2:
         

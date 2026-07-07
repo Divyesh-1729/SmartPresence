@@ -8,7 +8,6 @@ from src.screens.pipelines.voice_pipeline import get_voice_embedding, identify_s
 from src.screens.pipelines.face_pipeline import predict_attendance, get_face_embedding, train_classifier
 from src.screens.database.db import get_all_students, create_student, get_student_subjects, get_student_attendance,unenroll_student_from_subject
 import time
-from src.screens.components.dialog_enroll import create_subject_dialog
 from src.screens.components.subject_card import subject_card
 from src.screens.components.dialog_add_photos import add_photos_dialog
 from src.screens.components.dialog_enroll import enroll_dialog
@@ -55,7 +54,7 @@ def student_dashboard():
 
         stats_map[sid]['total_classes'] += 1
 
-        if logs.get('is_present'):
+        if log.get('is_present'):
             stats_map[sid]['attended_classes'] += 1
 
     

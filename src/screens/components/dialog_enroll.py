@@ -4,8 +4,8 @@ from src.screens.database.config import supabase
 import time
 
 
-@st.dialog("Enroll in subject")
-def enroll_subject_dialog():
+@st.dialog("Enroll in Subject")
+def enroll_dialog():
     st.write("Enter the subject code provided by your teacher:")
     join_code = st.text_input("Join Code", placeholder="Enter the join code here")
 

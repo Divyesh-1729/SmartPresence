@@ -4,7 +4,7 @@ import segno
 
 @st.dialog("Share subject")
 def share_subject_dialog(subject_name,subject_code):
-    app_domain= "smartpresence-main.streamlit.app"
+    app_domain= "smartpresence-india.streamlit.app"
     join_url = f"{app_domain}/?join-code={subject_code}"
 
     st.header("SScan to join")
