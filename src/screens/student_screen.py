@@ -127,7 +127,9 @@ def student_screen():
                 if detected:
                     student_id = list(detected.keys())[0]
                     all_students = get_all_students()
-                    student = next((s for s in all_students if s['id'] == student_id), None)
+                    # Some DB rows use 'student_id' while others may use 'id'.
+                    # Compare as strings to avoid KeyError/type mismatches.
+                    student = next((s for s in all_students if str(s.get('student_id') or s.get('id')) == str(student_id)), None)
 
                     if student:
                         st.session_state.is_logged_in = True
