@@ -221,8 +221,8 @@ def teacher_tab_manage_subjects():
                 stats=stats,
                 footer_callback=share_btn,
             )
-        else:
-            st.info("No subjects found. Please create a new subject.", icon="⚠️")
+    else:
+        st.info("No subjects found. Please create a new subject.", icon="⚠️")
 
 
 
