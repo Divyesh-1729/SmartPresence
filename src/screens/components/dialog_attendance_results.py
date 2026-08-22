@@ -1,14 +1,15 @@
 import streamlit as st
-from src.screens.database.db import create_subject,enroll_student_to_subject,create_attendance
-from src.screens.database.config import supabase
-import time
-from PIL import Image
+from src.screens.database.db import create_attendance
 import pandas as pd
 
 
-def show_attendance_results(df,logs):  ##Modularized
+def show_attendance_results(df, logs):  ##Modularized
     try:
-        col1,col2=st.columns(2)
+        if df is not None and not df.empty:
+            st.dataframe(df, use_container_width=True, hide_index=True)
+            st.divider()
+
+        col1, col2 = st.columns(2)
         with col1:
             if st.button('Discard',width = 'stretch'):
                 st.session_state.voice_attendance_results=None

@@ -18,7 +18,7 @@ pillow
 
 
 
-torch>=2.12.1
+torch>=2.1.0
 
 librosa   #Load the audio files and 
 resemblyzer  #LOad the audio files and extract the embeddings
