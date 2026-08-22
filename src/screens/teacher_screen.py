@@ -2,7 +2,7 @@ import streamlit as st
 from src.screens.ui.base_layout import style_background_dashboard, style_base_layout
 from src.screens.components.footer import footer_dashboard
 from src.screens.components.header import header_dashboard
-from src.screens.database.db import check_teacher_exsits, create_teacher, teacher_login, get_teacher_subjects, get_attendance_for_teacher
+from src.screens.database.db import check_teacher_exists, create_teacher, teacher_login, get_teacher_subjects, get_attendance_for_teacher
 from src.screens.components.dialog_create_subject import create_subject_dialog
 from src.screens.components.subject_card import subject_card
 from src.screens.components.dialog_share_subject import share_subject_dialog
@@ -313,7 +313,7 @@ def register_teacher(teacher_username, teacher_name, teacher_pass, teacher_pass_
         return False, "Passwords do not match"
 
     try:
-        if check_teacher_exsits(t_user):
+        if check_teacher_exists(t_user):
             return False, "Teacher with this username already exists"
         create_teacher(t_user, t_pass, t_name)
         return True, "Teacher profile created successfully"

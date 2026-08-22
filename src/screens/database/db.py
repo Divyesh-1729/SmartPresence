@@ -8,7 +8,7 @@ def hash_pass(pwd):
 def check_pass(pwd, hashed):
     return bcrypt.checkpw(pwd.encode(), hashed.encode())
 
-def check_teacher_exsits(username):
+def check_teacher_exists(username):
     ## Checks if the teacher with the given username exists in the database
     response = supabase.table('teachers').select('username').eq('username', username).execute()
     return len(response.data) > 0
