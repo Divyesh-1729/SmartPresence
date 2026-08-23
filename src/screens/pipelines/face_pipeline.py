@@ -49,7 +49,7 @@ def get_trained_model():
     if len(unique_classes) < 2:
         return {'clf': None, 'X': X, 'y': y}
 
-    clf = SVC(kernel='linear', probability=True, class_weight='balanced')
+    clf = SVC(kernel='linear', class_weight='balanced')
     try:
         clf.fit(X, y)
     except ValueError:
